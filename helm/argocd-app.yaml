@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/rdsln/nodejs-app-gitops.git
+    repoURL: https://github.com/ardaslan/nodejs-express-mysql.git
     targetRevision: main
     path: helm/nodejs-app
     helm:

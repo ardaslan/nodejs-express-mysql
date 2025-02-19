@@ -34,3 +34,6 @@ spec:
                   key: password
             - name: DB_NAME
               value: "{{ .Values.database.name }}"
+annotations:
+  argocd-image-updater.argoproj.io/image-list: mydockerhub/nodejs-app:latest
+  argocd-image-updater.argoproj.io/update-strategy: latest
