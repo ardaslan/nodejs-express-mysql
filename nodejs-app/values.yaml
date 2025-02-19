@@ -1,0 +1,15 @@
+image:
+  repository: rdsln/nodejs-app
+  tag: latest
+
+replicaCount: 2
+
+service:
+  type: ClusterIP
+  port: 8080
+
+database:
+  host: mysql-service
+  user: root
+  password: my-secret-pw
+  name: testdb
