@@ -1,0 +1,9 @@
+image:
+  repository: rdsln/nodejs-app
+  tag: latest  # Use a separate image tag for dev
+
+replicaCount: 1  # Less replicas in dev
+
+database:
+  host: mysql-service
+  secretName: dev-db-secret  # Dev database secret

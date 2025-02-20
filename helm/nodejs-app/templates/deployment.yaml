@@ -2,9 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nodejs-app
-  annotations:
-    argocd-image-updater.argoproj.io/image-list: rdsln/nodejs-app:latest
-    argocd-image-updater.argoproj.io/update-strategy: latest
+  namespace: nodejs
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
@@ -16,7 +14,7 @@ spec:
         app: nodejs-app
     spec:
       containers:
-        - name: nodejs
+        - name: nodejs-app
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           ports:
             - containerPort: 8080
@@ -26,12 +24,15 @@ spec:
             - name: DB_USER
               valueFrom:
                 secretKeyRef:
-                  name: mysql-secret
+                  name: "{{ .Values.database.secretName }}"
                   key: username
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: mysql-secret
+                  name: "{{ .Values.database.secretName }}"
                   key: password
             - name: DB_NAME
-              value: "{{ .Values.database.name }}"
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Values.database.secretName }}"
+                  key: dbname

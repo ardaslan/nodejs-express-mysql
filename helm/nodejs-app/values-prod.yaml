@@ -1,0 +1,9 @@
+image:
+  repository: rdsln/nodejs-app
+  tag: latest  # Use stable image version
+
+replicaCount: 3  # Higher availability in production
+
+database:
+  host: mysql-service
+  secretName: prod-db-secret  # Production database secret

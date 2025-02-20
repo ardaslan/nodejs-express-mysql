@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mysql
+  namespace: nodejs
 spec:
   replicas: 1
   selector:
@@ -14,14 +15,17 @@ spec:
     spec:
       containers:
         - name: mysql
-          image: "mysql:8.0"
+          image: mysql:5.7
+          ports:
+            - containerPort: 3306
           env:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: mysql-secret
+                  name: "{{ .Values.database.secretName }}"
                   key: password
             - name: MYSQL_DATABASE
-              value: "testdb"
-          ports:
-            - containerPort: 3306
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Values.database.secretName }}"
+                  key: dbname

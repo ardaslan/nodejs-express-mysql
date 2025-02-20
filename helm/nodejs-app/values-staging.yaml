@@ -1,0 +1,9 @@
+image:
+  repository: rdsln/nodejs-app
+  tag: latest  # Use a separate image tag for staging
+
+replicaCount: 2  # Medium scaling for staging
+
+database:
+  host: mysql-service
+  secretName: stage-db-secret  # Staging database secret

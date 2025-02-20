@@ -10,8 +10,6 @@ service:
 
 database:
   host: mysql-service
-  user: root
-  password: my-secret-pw
-  name: testdb
+  secretName: ""  # This will be overridden per environment
 
   

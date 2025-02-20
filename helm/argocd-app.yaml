@@ -13,12 +13,9 @@ spec:
     targetRevision: main
     path: helm/nodejs-app
     helm:
-      values: |
-        database:
-          host: mysql-service
-          user: root
-          password: my-secret-pw
-          name: testdb
+      valueFiles:
+        - values.yaml
+        - values-${ENV}.yaml  # Set ENV as dev, staging, or prod dynamically
   destination:
     server: https://kubernetes.default.svc
     namespace: nodejs
