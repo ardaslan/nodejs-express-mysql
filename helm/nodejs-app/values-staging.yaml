@@ -6,4 +6,5 @@ replicaCount: 2  # Medium scaling for staging
 
 database:
   host: mysql-service
-  secretName: stage-db-secret  # Staging database secret
+  secretName: staging-db-secret  # Staging database secret
+  dbname: c3RhZ2luZ2Ri #proddb

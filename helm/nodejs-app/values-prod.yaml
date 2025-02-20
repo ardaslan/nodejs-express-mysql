@@ -7,3 +7,4 @@ replicaCount: 3  # Higher availability in production
 database:
   host: mysql-service
   secretName: prod-db-secret  # Production database secret
+  dbname: cHJvZGRi #proddb

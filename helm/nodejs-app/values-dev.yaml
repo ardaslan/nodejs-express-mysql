@@ -7,3 +7,4 @@ replicaCount: 1  # Less replicas in dev
 database:
   host: mysql-service
   secretName: dev-db-secret  # Dev database secret
+  dbname: ZGV2ZGI=
