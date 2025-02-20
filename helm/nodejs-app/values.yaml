@@ -11,3 +11,11 @@ service:
 database:
   host: mysql-service
   secretName: ""  # This will be overridden per environment
+
+
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 70
+  targetMemoryUtilizationPercentage: 80
