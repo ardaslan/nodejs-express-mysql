@@ -15,5 +15,6 @@ data:
   template.slack: |
     message: |
       *ArgoCD Notification*
-      Application: {{.app.metadata.name}}
-      Status: {{.app.status.sync.status}}
+      *Application:* {{ .Release.Name }}
+
+
