@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-notifications-cm
+  namespace: argocd
+data:
+  context: |
+    slack: "codeway-webhook"
+  service.slack: |
+    token: $slack-webhook
+  trigger.on-sync-status: |
+    - description: Notify on sync status changes
+      send: [slack]
+      when: app.status.sync.status in ['Synced', 'OutOfSync']
+  template.slack: |
+    message: |
+      *ArgoCD Notification*
+      Application: {{.app.metadata.name}}
+      Status: {{.app.status.sync.status}}

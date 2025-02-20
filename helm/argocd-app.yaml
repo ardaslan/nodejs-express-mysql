@@ -6,16 +6,17 @@ metadata:
   annotations:
     argocd-image-updater.argoproj.io/image-list: rdsln/nodejs-app:latest
     argocd-image-updater.argoproj.io/rdsln.nodejs-app.update-strategy: latest
+    notifications.argoproj.io/subscribe.slack: codeway-webhook
 spec:
   project: default
   source:
     repoURL: https://github.com/ardaslan/nodejs-express-mysql.git
-    targetRevision: main
+    targetRevision: master
     path: helm/nodejs-app
     helm:
       valueFiles:
         - values.yaml
-        - values-${ENV}.yaml  # Set ENV as dev, staging, or prod dynamically
+        - values-dev.yaml  # Set ENV as dev, staging, or prod dynamically
   destination:
     server: https://kubernetes.default.svc
     namespace: nodejs
