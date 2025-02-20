@@ -11,6 +11,3 @@ service:
 database:
   host: mysql-service
   secretName: ""  # This will be overridden per environment
-  
-
-  
