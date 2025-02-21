@@ -7,14 +7,22 @@ data:
   context: |
     slack: "codeway-webhook"
   service.slack: |
-    token: $slack-webhook
+    webhook: $slack-webhook
   trigger.on-sync-status: |
     - description: Notify on sync status changes
       send: [slack]
       when: app.status.sync.status in ['Synced', 'OutOfSync']
   template.slack: |
-    message: |
-      *ArgoCD Notification*
-      *Application:* {{ .Release.Name }}
+    slack:
+      message: |
+        {
+          "attachments": [
+            {
+              "title": "ArgoCD Notification",
+              "text": "*Application:* {{ .app.metadata.name }}\n*Sync Status:* {{ .app.status.sync.status }}",
+              "color": "#36a64f"
+            }
+          ]
+        }
 
 
